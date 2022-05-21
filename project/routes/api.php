@@ -14,8 +14,13 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function(){
+    //왜 여기서 이렇게 사용을 해주는지 잘 모르겠다 기본적으로 그냥 post로 하면 되는거 아닌가? 왜 굳이 이렇게?
+    Route::get('/user',function(Request $request) {
+        return $request->user();
+    });
+
+    Route::post('/logout',[AuthController::class,'logout']);
 });
 
 Route::post('/register', [AuthController::class, 'register']);

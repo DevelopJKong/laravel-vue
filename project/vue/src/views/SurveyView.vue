@@ -1,9 +1,10 @@
 <template>
-  <PageComponent title="Dashboard">Content goes here</PageComponent>
+    <PageComponent title="View or create a survey">
+        View or create a survey
+    </PageComponent>
 </template>
+
 
 <script setup>
 import PageComponent from "../components/PageComponent.vue";
 </script>
-
-<style scoped></style>

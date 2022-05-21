@@ -42,7 +42,7 @@ class AuthController
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required|email|string|exists:user,email',
+            'email' => 'required|email|string|exists:users,email',
             'password' => [
                 'required'
             ],
@@ -51,18 +51,32 @@ class AuthController
         $remember = $credentials['remember'] ?? false;
         unset($credentials['remember']);
 
-        if(!Auth::attempt($credentials,$remember)) {
+        if (!Auth::attempt($credentials, $remember)) { // 왜 여기서 vue로 할때는 되는거지?
             return response([
                 'error' => 'The Provided credentials are not correct'
             ], 422);
         }
-
         $user = Auth::user();
         $token = $user->createToken('main')->plainTextToken;
 
         return response([
             'user' => $user,
             'token' => $token
+        ]);
+    }
+
+    public function logout()
+    {
+        /**
+         * @var User $user
+         */
+        $user = Auth::user();
+
+        //Revoke the token that was used to authenticate the current request...
+        $user->currentAccessToken()->delete();
+
+        return response([
+            'success' => true
         ]);
     }
 
