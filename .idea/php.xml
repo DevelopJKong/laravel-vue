@@ -111,6 +111,7 @@
       <path value="$PROJECT_DIR$/project/vendor/symfony/polyfill-php80" />
       <path value="$PROJECT_DIR$/project/vendor/symfony/polyfill-intl-normalizer" />
       <path value="$PROJECT_DIR$/project/vendor/symfony/css-selector" />
+      <path value="$PROJECT_DIR$/project/vendor/spatie/laravel-sluggable" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />

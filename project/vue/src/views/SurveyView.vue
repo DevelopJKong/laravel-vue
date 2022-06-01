@@ -160,6 +160,24 @@
                             Add Questtion
                         </button>
                     </h3>
+                    <div
+                        v-if="!model.questions.length"
+                        class="text-center text-gray-600"
+                    >
+                        You don't have any questions created
+                    </div>
+                    <div
+                        v-for="(question, index) in model.questions"
+                        :key="question.id"
+                    >
+                        <QuestionEditor
+                            :question="question"
+                            :index="index"
+                            @change="questionChange"
+                            @addQuestion="addQuestion"
+                            @deleteQuestion="deleteQuestion"
+                        />
+                    </div>
                 </div>
 
                 <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
@@ -180,6 +198,7 @@ import store from "../store";
 import { ref } from "vue";
 import { useRoute } from "vue-router";
 import PageComponent from "../components/PageComponent.vue";
+import QuestionEditor from "../components/editor/QuestionEditor.vue";
 
 const route = useRoute();
 
